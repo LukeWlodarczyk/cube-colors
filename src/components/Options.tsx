@@ -9,8 +9,10 @@ type Props = {
   mode: Mode;
   activeColors: SideColor[];
   onColorSelect: (color: SideColor) => void;
+  className?: string;
 };
 
+const Options = ({ mode, activeColors, onColorSelect, className }: Props) => {
   const handleClick =
     (color: SideColor) => (e: React.MouseEvent<HTMLButtonElement>) => {
       e.currentTarget.blur();
@@ -18,10 +20,8 @@ type Props = {
     };
 
   return (
-    <>
-      <h2 className="text-white mt-28 mb-4 text-center text-lg">
-        Front Face Colors
-      </h2>
+    <section className={twMerge(className)}>
+      <h2 className="text-white text-center text-lg mb-4">Front Face Colors</h2>
       <div className="flex gap-8 justify-center">
         {COLOR_SCHEMA.map((color) => (
           <button
@@ -48,7 +48,7 @@ type Props = {
           Triple (T)
         </span>
       </p>
-    </>
+    </section>
   );
 };
 
