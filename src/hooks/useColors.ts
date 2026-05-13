@@ -19,11 +19,12 @@ const useColors = (colors: readonly SideColor[]) => {
 
   const selectActiveColors = (selectedColor: SideColor) => {
     setActiveColors((colors) => {
-      if (!colors.includes(selectedColor)) return [...colors, selectedColor];
+      const set = new Set(colors);
 
-      if (colors.length === 1) return colors;
+      if (set.has(selectedColor) && set.size > 1) set.delete(selectedColor);
+      else set.add(selectedColor);
 
-      return colors.filter((color) => color !== selectedColor);
+      return [...set];
     });
   };
 
