@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import { type SideColor } from "./App";
+import { type SideColor } from "../hooks/useColors";
 
 type Size = "small" | "large";
 
@@ -12,12 +12,12 @@ type TileProps = {
   className?: string;
 };
 
-const colorMapClasses = {
+const colorMapClasses: Record<SideColor, string> = {
   green: "bg-cube-green",
   red: "bg-cube-red",
   blue: "bg-cube-blue",
   orange: "bg-cube-orange",
-} as const;
+};
 
 const ColorTile = ({
   color,
@@ -38,7 +38,6 @@ const ColorTile = ({
         "flex items-center justify-center",
         "font-semibold uppercase tracking-widest text-lg",
         "bg-gray-500",
-
         isLarge && "w-84 rounded-3xl",
         isSmall && "w-12 rounded-md",
         isRevealed && `scale-100 opacity-100 ${colorMapClasses[color]}`,
