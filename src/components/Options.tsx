@@ -11,7 +11,12 @@ type Props = {
   onColorSelect: (color: SideColor) => void;
 };
 
-const Options = ({ mode, activeColors, onColorSelect }: Props) => {
+  const handleClick =
+    (color: SideColor) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.currentTarget.blur();
+      onColorSelect(color);
+    };
+
   return (
     <>
       <h2 className="text-white mt-28 mb-4 text-center text-lg">
@@ -22,10 +27,7 @@ const Options = ({ mode, activeColors, onColorSelect }: Props) => {
           <button
             className="cursor-pointer"
             key={color}
-            onClick={(e) => {
-              e.currentTarget.blur();
-              onColorSelect(color);
-            }}
+            onClick={handleClick(color)}
           >
             <ColorTile
               className={twMerge(!activeColors.includes(color) && "opacity-30")}
