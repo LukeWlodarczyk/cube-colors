@@ -36,7 +36,7 @@ const App = () => {
     <div className="min-h-screen bg-dark text-white flex flex-col">
       <Heading className="mt-10 mb-24">Cube Color Schema</Heading>
 
-      <div className="flex justify-center items-center gap-16">
+      <div className="flex justify-center items-center gap-8 md:gap-16 mx-4 md:mx-18">
         <ColorTile
           size="large"
           color={colors.current.neighbors.left}
@@ -55,6 +55,7 @@ const App = () => {
       </div>
 
       <Options
+        className="mt-20"
         mode={mode.value}
         activeColors={colors.active.value}
         onColorSelect={colors.active.select}
