@@ -14,9 +14,9 @@ type TileProps = {
 
 const colorMapClasses: Record<SideColor, string> = {
   green: "bg-cube-green",
-  red: "bg-cube-red",
-  blue: "bg-cube-blue",
   orange: "bg-cube-orange",
+  blue: "bg-cube-blue",
+  red: "bg-cube-red",
 };
 
 const ColorTile = ({

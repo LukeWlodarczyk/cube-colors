@@ -8,9 +8,9 @@ type Props = {
 
 const colorClasses = [
   "text-cube-green",
-  "text-cube-red",
-  "text-cube-blue",
   "text-cube-orange",
+  "text-cube-blue",
+  "text-cube-red",
 ];
 
 const getCharColorClass = (index: number) =>
