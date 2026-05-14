@@ -14,7 +14,8 @@ const useMode = () => {
   return {
     mode: {
       value: mode,
-      set: setMode,
+      setDouble: () => setMode("double"),
+      setTriple: () => setMode("triple"),
       isDouble: mode === "double",
       isTriple: mode === "triple",
     },

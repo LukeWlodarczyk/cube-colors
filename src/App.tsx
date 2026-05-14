@@ -1,37 +1,32 @@
 import { useSwipeable } from "react-swipeable";
+import { useHotkey } from "@tanstack/react-hotkeys";
+
 import Heading from "./components/Heading";
 import ColorTile from "./components/ColorTile";
 import Options from "./components/Options";
 
 import useMode from "./hooks/useMode";
 import useColors, { COLOR_SCHEMA } from "./hooks/useColors";
-import useKeyboardListener from "./hooks/useKeyboardListener";
 
 const App = () => {
   const { mode, doubleModeSide } = useMode();
 
   const { colors, reveal } = useColors(COLOR_SCHEMA);
 
-  useKeyboardListener({
-    Space: () => {
-      if (!reveal.value) return reveal.toggle();
+  const advance = () => {
+    if (!reveal.value) return reveal.toggle();
 
-      if (mode.isDouble) doubleModeSide.setRandom();
+    if (mode.isDouble) doubleModeSide.setRandom();
 
-      colors.current.setRandom();
-      reveal.toggle();
-    },
-    ArrowLeft: () => {
-      colors.current.prev();
-      reveal.set(true);
-    },
-    ArrowRight: () => {
-      colors.current.next();
-      reveal.set(true);
-    },
-    KeyD: () => mode.set("double"),
-    KeyT: () => mode.set("triple"),
-  });
+    colors.current.setRandom(colors.active.value);
+    reveal.toggle();
+  };
+
+  useHotkey("Space", advance);
+  useHotkey("ArrowLeft", colors.current.prev);
+  useHotkey("ArrowLeft", colors.current.prev);
+  useHotkey("D", mode.setDouble);
+  useHotkey("T", mode.setTriple);
 
   const swipeable = useSwipeable({
     onSwipedLeft: colors.current.prev,
