@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-dark text-white flex flex-col">
-      <Heading className="mt-10 mb-24">Cube Color Schema</Heading>
+      <Heading className="mt-10 mb-24">Cube Color Scheme</Heading>
 
       <div
         {...swipeable}

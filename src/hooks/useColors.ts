@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import { getNeighbors, getRandom } from "../utils";
 
-export const COLOR_SCHEMA = ["green", "orange", "blue", "red"] as const;
+export const COLOR_SCHEME = ["green", "orange", "blue", "red"] as const;
 
-export type SideColor = (typeof COLOR_SCHEMA)[number];
+export type SideColor = (typeof COLOR_SCHEME)[number];
 
 const useColors = (colors: readonly SideColor[]) => {
   const [activeColors, setActiveColors] = useState<SideColor[]>(() => [

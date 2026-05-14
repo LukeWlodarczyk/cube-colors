@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import { COLOR_SCHEMA, type SideColor } from "../hooks/useColors";
+import { COLOR_SCHEME, type SideColor } from "../hooks/useColors";
 import type { Mode } from "../hooks/useMode";
 
 import ColorTile from "./ColorTile";
@@ -23,7 +23,7 @@ const Options = ({ mode, activeColors, onColorSelect, className }: Props) => {
     <section className={twMerge(className)}>
       <h2 className="text-white text-center text-lg mb-4">Front Face Colors</h2>
       <div className="flex gap-8 justify-center">
-        {COLOR_SCHEMA.map((color) => (
+        {COLOR_SCHEME.map((color) => (
           <button
             className="cursor-pointer"
             key={color}

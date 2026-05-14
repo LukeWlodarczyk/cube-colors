@@ -1,11 +1,11 @@
-import { COLOR_SCHEMA, type SideColor } from "./hooks/useColors";
+import { COLOR_SCHEME, type SideColor } from "./hooks/useColors";
 
 export const getNeighbors = (color: SideColor) => {
-  const index = COLOR_SCHEMA.indexOf(color);
+  const index = COLOR_SCHEME.indexOf(color);
 
   return {
-    left: COLOR_SCHEMA[(index - 1 + COLOR_SCHEMA.length) % COLOR_SCHEMA.length],
-    right: COLOR_SCHEMA[(index + 1) % COLOR_SCHEMA.length],
+    left: COLOR_SCHEME[(index - 1 + COLOR_SCHEME.length) % COLOR_SCHEME.length],
+    right: COLOR_SCHEME[(index + 1) % COLOR_SCHEME.length],
   };
 };
 
