@@ -32,11 +32,20 @@ const App = () => {
     KeyT: () => mode.set("triple"),
   });
 
+  const swipeable = useSwipeable({
+    onSwipedLeft: colors.current.prev,
+    onSwipedRight: colors.current.next,
+    preventScrollOnSwipe: true,
+  });
+
   return (
     <div className="min-h-screen bg-dark text-white flex flex-col">
       <Heading className="mt-10 mb-24">Cube Color Schema</Heading>
 
-      <div className="flex justify-center items-center gap-8 md:gap-16 mx-4 md:mx-18">
+      <div
+        {...swipeable}
+        className="flex justify-center items-center gap-8 md:gap-16 mx-4 md:mx-18"
+      >
         <ColorTile
           size="large"
           color={colors.current.neighbors.left}
