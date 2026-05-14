@@ -24,7 +24,7 @@ const App = () => {
 
   useHotkey("Space", advance);
   useHotkey("ArrowLeft", colors.current.prev);
-  useHotkey("ArrowLeft", colors.current.prev);
+  useHotkey("ArrowRight", colors.current.next);
   useHotkey("D", mode.setDouble);
   useHotkey("T", mode.setTriple);
 
