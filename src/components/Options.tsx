@@ -8,15 +8,15 @@ import ColorTile from "./ColorTile";
 type Props = {
   mode: Mode;
   activeColors: SideColor[];
-  onColorSelect: (color: SideColor) => void;
+  onColorToggle: (color: SideColor) => void;
   className?: string;
 };
 
-const Options = ({ mode, activeColors, onColorSelect, className }: Props) => {
+const Options = ({ mode, activeColors, onColorToggle, className }: Props) => {
   const handleClick =
     (color: SideColor) => (e: React.MouseEvent<HTMLButtonElement>) => {
       e.currentTarget.blur();
-      onColorSelect(color);
+      onColorToggle(color);
     };
 
   return (

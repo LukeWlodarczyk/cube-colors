@@ -5,32 +5,21 @@ import Heading from "./components/Heading";
 import ColorTile from "./components/ColorTile";
 import Options from "./components/Options";
 
-import useMode from "./hooks/useMode";
-import useColors, { COLOR_SCHEMA } from "./hooks/useColors";
+import useGame from "./hooks/useGame";
 
 const App = () => {
-  const { mode, doubleModeSide } = useMode();
+  const { isRevealed, colors, mode, doubleModeSide, actions } = useGame();
 
-  const { colors, reveal } = useColors(COLOR_SCHEMA);
-
-  const advance = () => {
-    if (!reveal.value) return reveal.toggle();
-
-    if (mode.isDouble) doubleModeSide.setRandom();
-
-    colors.current.setRandom(colors.active.value);
-    reveal.toggle();
-  };
-
-  useHotkey("Space", advance);
-  useHotkey("ArrowLeft", colors.current.prev);
-  useHotkey("ArrowRight", colors.current.next);
-  useHotkey("D", mode.setDouble);
-  useHotkey("T", mode.setTriple);
+  useHotkey("Space", actions.advance);
+  useHotkey("ArrowLeft", actions.prevColor);
+  useHotkey("ArrowRight", actions.nextColor);
+  useHotkey("D", actions.useDoubleMode);
+  useHotkey("T", actions.useTripleMode);
 
   const swipeable = useSwipeable({
-    onSwipedLeft: colors.current.prev,
-    onSwipedRight: colors.current.next,
+    onTap: actions.advance,
+    onSwipedLeft: actions.nextColor,
+    onSwipedRight: actions.prevColor,
     preventScrollOnSwipe: true,
   });
 
@@ -45,7 +34,7 @@ const App = () => {
         <ColorTile
           size="large"
           color={colors.current.neighbors.left}
-          isRevealed={reveal.value}
+          isRevealed={isRevealed}
           isActive={mode.isTriple || doubleModeSide.isLeft}
         />
 
@@ -54,7 +43,7 @@ const App = () => {
         <ColorTile
           size="large"
           color={colors.current.neighbors.right}
-          isRevealed={reveal.value}
+          isRevealed={isRevealed}
           isActive={mode.isTriple || doubleModeSide.isRight}
         />
       </div>
@@ -63,7 +52,7 @@ const App = () => {
         className="mt-20"
         mode={mode.value}
         activeColors={colors.active.value}
-        onColorSelect={colors.active.select}
+        onColorToggle={actions.toggleActiveColor}
       />
     </div>
   );

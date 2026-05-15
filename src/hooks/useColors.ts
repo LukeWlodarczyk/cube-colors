@@ -13,34 +13,32 @@ const useColors = (colors: readonly SideColor[]) => {
 
   const [currentColor, setCurrentColor] = useState<SideColor>(activeColors[0]);
 
-  const [isRevealed, setIsRevealed] = useState(false);
-
   const neighbors = getNeighbors(currentColor);
 
-  const selectActiveColors = (selectedColor: SideColor) => {
+  const toggleActiveColors = (selectedColor: SideColor) => {
     setActiveColors((colors) => {
       const set = new Set(colors);
 
-      if (set.has(selectedColor) && set.size > 1) set.delete(selectedColor);
-      else set.add(selectedColor);
+      if (set.has(selectedColor) && set.size > 1) {
+        set.delete(selectedColor);
+        if (selectedColor === currentColor) setRandomCurrentColor([...set]);
+      } else {
+        set.add(selectedColor);
+        setCurrentColor(selectedColor);
+      }
 
       return [...set];
     });
   };
 
-  const setRandomCurrentColor = () => setCurrentColor(getRandom(activeColors));
+  const setRandomCurrentColor = (colors: SideColor[]) =>
+    setCurrentColor(getRandom(colors));
 
-  const setNextCurrentColor = () => {
+  const navigateColor = (direction: number) => {
     setCurrentColor((prev) => {
       const index = colors.indexOf(prev);
-      return colors[(index + 1) % colors.length];
-    });
-  };
-
-  const setPrevCurrentColor = () => {
-    setCurrentColor((prev) => {
-      const index = colors.indexOf(prev);
-      return colors[(index - 1 + colors.length) % colors.length];
+      const nextIndex = (index + direction + colors.length) % colors.length;
+      return colors[nextIndex];
     });
   };
 
@@ -49,21 +47,16 @@ const useColors = (colors: readonly SideColor[]) => {
       active: {
         value: activeColors,
         set: setActiveColors,
-        select: selectActiveColors,
+        toggle: toggleActiveColors,
       },
       current: {
         value: currentColor,
         set: setCurrentColor,
         neighbors,
         setRandom: setRandomCurrentColor,
-        next: setNextCurrentColor,
-        prev: setPrevCurrentColor,
+        next: () => navigateColor(1),
+        prev: () => navigateColor(-1),
       },
-    },
-    reveal: {
-      value: isRevealed,
-      toggle: () => setIsRevealed((r) => !r),
-      set: setIsRevealed,
     },
   };
 };
