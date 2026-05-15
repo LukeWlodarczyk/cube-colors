@@ -32,11 +32,11 @@ const ColorTile = ({
   return (
     <div
       className={twMerge(
-        "bg-[linear-gradient(to_right,rgba(0,0,0,0.08)_3px,transparent_3px),linear-gradient(to_bottom,rgba(0,0,0,0.08)_3px,transparent_3px)] bg-size-[33.333%_33.333%] bg-position-[0_-2px]",
+        "bg-[linear-gradient(to_right,rgba(0,0,0,0.08)_3px,transparent_3px),linear-gradient(to_bottom,rgba(0,0,0,0.08)_3px,transparent_3px)] bg-size-[33.333%_33.333%] bg-position-[-2px_-2px]",
         "mask-[radial-gradient(ellipse_at_center,black_25%,transparent_125%)]",
         "transition-all duration-300",
         "flex items-center justify-center aspect-square",
-        "font-semibold uppercase tracking-widest text-lg",
+        "font-semibold uppercase tracking-widest text-xs md:text-lg select-none",
         "bg-gray-500",
         isLarge && "w-2/7 rounded-3xl",
         isSmall && "w-12 rounded-md",

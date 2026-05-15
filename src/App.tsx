@@ -3,7 +3,7 @@ import { useHotkey } from "@tanstack/react-hotkeys";
 
 import Heading from "./components/Heading";
 import ColorTile from "./components/ColorTile";
-import Options from "./components/Options";
+import Controls from "./components/Controls";
 
 import useGame from "./hooks/useGame";
 
@@ -24,12 +24,12 @@ const App = () => {
   });
 
   return (
-    <div className="min-h-screen bg-dark text-white flex flex-col">
-      <Heading className="mt-10 mb-24">Cube Color Scheme</Heading>
+    <div className="min-h-dvh bg-dark text-white flex flex-col">
+      <Heading className="mt-10 mb-16">Cube Color Scheme</Heading>
 
       <div
         {...swipeable}
-        className="flex justify-center items-center gap-8 md:gap-16 mx-4 md:mx-18"
+        className="flex justify-center items-center gap-4 sm:gap-8 lg:gap-16 mx-4 md:mx-18 mt-auto mb-24"
       >
         <ColorTile
           size="large"
@@ -48,11 +48,17 @@ const App = () => {
         />
       </div>
 
-      <Options
-        className="mt-20"
+      <Controls
+        className="mt-auto mb-26"
         mode={mode.value}
         activeColors={colors.active.value}
+        isRevealed={isRevealed}
+        onAdvanceClick={actions.advance}
+        onPrevColorClick={actions.prevColor}
+        onNextColorClick={actions.nextColor}
         onColorToggle={actions.toggleActiveColor}
+        onDoubleModeClick={actions.useDoubleMode}
+        onTripleModeClick={actions.useTripleMode}
       />
     </div>
   );
