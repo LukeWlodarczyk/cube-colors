@@ -11,3 +11,11 @@
   --color-cube-yellow: #ffd500;
   --color-cube-white: #ffffff;
 }
+
+button {
+  outline: none;
+}
+
+* {
+  user-select: none;
+}
