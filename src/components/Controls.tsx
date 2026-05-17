@@ -69,21 +69,21 @@ const Controls = ({
           <button
             onClick={onDoubleModeClick}
             className={twMerge(
-              "w-full max-w-36 border rounded-md px-2 py-1 cursor-pointer",
+              "w-full max-w-36 border rounded-md px-2 py-1 cursor-pointer hover:text-white",
               mode === "triple" && `text-gray-400`,
             )}
           >
-            Double (D)
+            Double (<kbd>D</kbd>)
           </button>
 
           <button
             onClick={onTripleModeClick}
             className={twMerge(
-              "w-full max-w-36 border rounded-md px-2 py-1 cursor-pointer",
+              "w-full max-w-36 border rounded-md px-2 py-1 cursor-pointer hover:text-white",
               mode === "double" && `text-gray-400`,
             )}
           >
-            Triple (T)
+            Triple (<kbd>T</kbd>)
           </button>
         </div>
       </div>
